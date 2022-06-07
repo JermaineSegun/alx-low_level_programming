@@ -17,7 +17,8 @@ twobefore = 1;
 current = 2;
 printf("%lu", twobefore);
 printf(", %lu", current);
-for (i = 2; i < 50; i++) {
+for (i = 2; i < 50; i++)
+{
 twobefore = onebefore;
 onebefore = current;
 current = twobefore + onebefore;
