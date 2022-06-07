@@ -13,3 +13,12 @@ int add(int n, int m)
 {
 	return (n + m);
 }
+
+int main(void)
+{
+int n;
+
+n = add(89, 9);
+printf("%d\n", n);
+return (0);
+}
