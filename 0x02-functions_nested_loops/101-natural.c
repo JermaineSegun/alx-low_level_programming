@@ -2,6 +2,7 @@
 
 /**
  * main - prints the sum of all natural numbers below 1024 that are
+ *
  * divisible by 3 and 5
  *
  * Return: 0 on success
