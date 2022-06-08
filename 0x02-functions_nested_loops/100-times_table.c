@@ -42,7 +42,8 @@ num = i * j;
 buffer[2] = num / 100 + 48;
 buffer[3] = num / 10 % 10 + 48;
 buffer[4] = num % 10 + 48;
-if (buffer[2] == '0') buffer[2] = ' ';
+if (buffer[2] == '0')
+buffer[2] = ' ';
 if (buffer[3] == '0' && buffer[2] == ' ')
 buffer[3] = ' ';
 _printstr(buffer);
