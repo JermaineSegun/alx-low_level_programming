@@ -9,7 +9,8 @@
 
 int main(int argc, char *argv[])
 {
-while (argc--)
-printf("%s\n", *argv++);
+/* to suppress unused variable warning */
+argv = argv;
+printf("%d\n", argc - 1);
 return (0);
 }
