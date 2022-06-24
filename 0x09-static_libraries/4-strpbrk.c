@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stddef.h>
+
 /**
  * *_strpbrk - main function.
  * @s: Pointer to the string to search.
