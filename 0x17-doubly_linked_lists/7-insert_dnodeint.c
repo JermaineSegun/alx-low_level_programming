@@ -1,49 +1,54 @@
 #include "lists.h"
 
 /**
- * delete_dnodeint_at_index - deletes the node at given index of a list
- * @head: pointer to head of the list
- * @index: index to delete from, starting from 0
- * Return: 1 on success or -1 on failure
- **/
+ * insert_dnode_at_index - adds node at index
+ * @h: pointer to head node
+ * @idx: index of nodes
+ * @n: elements of nodes
+ * Return: address of new node, or NULL if failed
+ */
 
-int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
+dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	unsigned int count;
-	dlistint_t *tmp;
+	unsigned int i;
+	dlistint_t *temp, *new, *temp_prev;
 
-	if (*head == NULL || head == NULL)
-	return (-1);
-	if (index == 0)
+	if (h == NULL && idx > 0)
+	return (NULL);
+	new = malloc(sizeof(dlistint_t));
+	if (new == NULL)
+		return (NULL);
+	new->n = n, new->prev = new->next = NULL;
+
+	if (idx == 0)
 	{
-		tmp = *head;
-		*head = (*head)->next;
-		if (*head)
-			(*head)->prev = NULL;
-		free(tmp), tmp = NULL;
-		return (1);
-
+		if (*h)
+	{
+		new->next = *h;
+		(*h)->prev = new, *h = new;
 	}
-	count = 1, tmp = (*head)->next;
-	if (tmp)
+		else
+			*h = new;
+		return (new);
+	}
+	i = 1, temp = (*h)->next;
+	while (temp)
 	{
-		while (tmp->next)
+		if (idx == i)
 		{
-			if (index == count)
-			{
-				tmp->prev->next = tmp->next;
-				tmp->next->prev = tmp->prev;
-				free(tmp), tmp = NULL;
-				return (1);
-			}
-			count++, tmp = tmp->next;
+			temp->prev->next = new, new->prev = temp->prev;
+			new->next = temp, temp->prev = new;
+			return (new);
 		}
+		i++;
+		temp_prev = temp;
+		temp = temp->next;
 	}
-	if (tmp && index == count)
+	if (temp == NULL && i == idx)
 	{
-		tmp->prev->next = NULL;
-		free(tmp);
-		return (1);
+		temp_prev->next = new, new->prev = temp_prev;
+		return (new);
 	}
-	return (-1);
+	free(new);
+	return (NULL);
 }
